@@ -1,5 +1,6 @@
 import useAppContext from "../context/AppContext";
 
+
 import ContactCard from "../components/ContactCard";
 
 const Home = () => {
@@ -8,6 +9,7 @@ const Home = () => {
   return (
     <div className="card">
       <ContactCard />
+      
     </div>
   );
 };

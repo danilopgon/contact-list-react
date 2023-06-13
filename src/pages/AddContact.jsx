@@ -1,23 +1,33 @@
 const AddContact = () => {
   return (
     <div>
-      <h1>Add a new contact</h1>
+      <h1 className="">Add a new contact</h1>
 
       <form>
         <div className="mb-3">
-          <label htmlFor="exampleInputFullName" className="form-label">Full Name</label>
-          <input type="text" className="form-control" id="exampleInputFullName" aria-describedby="fullNameHelp" />
-          <div id="fullNameHelp" className="form-text">Enter your full name</div>
+          <label htmlFor="exampleInputFullName" className="form-label d-flex justify-content-start">Full Name</label>
+          <input type="text" className="form-control" id="exampleInputFullName" aria-describedby="fullNameHelp" placeholder="Full Name" />
         </div>
+        
         <div className="mb-3">
-          <label htmlFor="exampleInputEmail" className="form-label">Email</label>
-          <input type="email" className="form-control" id="exampleInputEmail" />
+          <label htmlFor="exampleInputEmail" className="form-label d-flex justify-content-start">Email</label>
+          <input type="text" className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email" />
         </div>
-        <div className="mb-3 form-check">
-          <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-          <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+        
+        <div className="mb-3">
+          <label htmlFor="exampleInputPhone" className="form-label d-flex justify-content-start">Phone</label>
+          <input type="text" className="form-control" id="exampleInputPhone" aria-describedby="phoneHelp" placeholder="Enter phone" />
         </div>
-        <button type="submit" className="btn btn-primary">Submit</button>
+
+        <div className="mb-3">
+          <label htmlFor="exampleInputAdress" className="form-label d-flex justify-content-start">Adress</label>
+          <input type="text" className="form-control" id="exampleInputAdress" aria-describedby="adressHelp" placeholder="Enter adress" />
+        </div>
+
+        <button type="submit" className="btn btn-primary container-fluid">Save</button>
+        <div className="d-flex justify-content-start">
+          <a href="#" style={{textDecoration: 'underline'}}>or get back to contacts</a>
+        </div>
       </form>
     </div>
   );
