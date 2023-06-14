@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const AddContact = () => {
   return (
-    <div>
+    <div className="my-3 container">
       <h1 className="">Add a new contact</h1>
 
       <form>

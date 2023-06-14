@@ -26,7 +26,6 @@ const ContactCard = () => {
               Direction
             </h4>
             <h5 className="card-title">
-              {" "}
               <FontAwesomeIcon className="me-3" icon={faPhone} />
               Phone
             </h5>
