@@ -2,12 +2,21 @@ import { Link } from "react-router-dom";
 
 const AddContact = () => {
 
-  const [nombre, setNombre] = useState('');
+  const AddContact = () => {
+    const [state, setState] = React.useState({
+      fullName: "",
+      email: "",
+      phone: "",
+      address: ""
+    });
 
-  const handleInputChange = (event) => {
-    setNombre(event.target.value);
-  };
-
+    const handleInputChange = (event) => {
+      const { name, value } = event.target;
+      setState((prevState) => ({
+        ...prevState,
+        [name]: value
+      }));
+    };
   return (
     <div className="my-3 container">
       <h1 className="">Add a new contact</h1>
@@ -23,6 +32,7 @@ const AddContact = () => {
           <input
             type="text"
             onChange={handleInputChange}
+            value={state.fullName}
             className="form-control"
             id="exampleInputFullName"
             aria-describedby="fullNameHelp"
@@ -39,6 +49,8 @@ const AddContact = () => {
           </label>
           <input
             type="text"
+            onChange={handleInputChange}
+            value={state.email}
             className="form-control"
             id="exampleInputEmail"
             aria-describedby="emailHelp"
@@ -55,6 +67,8 @@ const AddContact = () => {
           </label>
           <input
             type="text"
+            onChange={handleInputChange}
+            value={state.phone}
             className="form-control"
             id="exampleInputPhone"
             aria-describedby="phoneHelp"
@@ -71,6 +85,8 @@ const AddContact = () => {
           </label>
           <input
             type="text"
+            onChange={handleInputChange}
+            value={state.adress}
             className="form-control"
             id="exampleInputAdress"
             aria-describedby="adressHelp"
@@ -90,5 +106,6 @@ const AddContact = () => {
     </div>
   );
 };
+}
 
 export default AddContact;
