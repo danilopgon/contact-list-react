@@ -1,27 +1,14 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAppContext from "../context/AppContext";
 
 const AddContact = () => {
-  const [userInput, setUserInput] = useState({
-    fullName: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
-
-  const handleUserInput = (event) => {
-    const { name, value } = event.target;
-    setUserInput((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const { store, actions } = useAppContext();
 
   return (
     <div className="my-3 container">
       <h1 className="">Add a new contact</h1>
 
-      <form>
+      <form onSubmit={actions.handleSubmit}>
         <div className="mb-3">
           <label
             htmlFor="fullname"
@@ -32,8 +19,8 @@ const AddContact = () => {
           <input
             type="text"
             name="fullName"
-            onChange={handleUserInput}
-            value={userInput.fullName}
+            onChange={actions.handleUserInput}
+            value={store.userInput.fullName}
             className="form-control"
             id="fullname"
             aria-describedby="fullNameHelp"
@@ -51,8 +38,8 @@ const AddContact = () => {
           <input
             type="text"
             name="email"
-            onChange={handleUserInput}
-            value={userInput.email}
+            onChange={actions.handleUserInput}
+            value={store.userInput.email}
             className="form-control"
             id="email"
             aria-describedby="emailHelp"
@@ -70,8 +57,8 @@ const AddContact = () => {
           <input
             type="text"
             name="phone"
-            onChange={handleUserInput}
-            value={userInput.phone}
+            onChange={actions.handleUserInput}
+            value={store.userInput.phone}
             className="form-control"
             id="phone"
             aria-describedby="phoneHelp"
@@ -89,8 +76,8 @@ const AddContact = () => {
           <input
             type="text"
             name="address"
-            onChange={handleUserInput}
-            value={userInput.address}
+            onChange={actions.handleUserInput}
+            value={store.userInput.address}
             className="form-control"
             id="address"
             aria-describedby="adressHelp"

@@ -3,12 +3,32 @@ import { createContext, useContext, useState } from "react";
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [prueba, setPrueba] = useState("prueba");
+  const [userInput, setUserInput] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
 
-  const actions = {};
+  const handleUserInput = (event) => {
+    const { name, value } = event.target;
+    setUserInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  const actions = {
+    handleUserInput,
+    handleSubmit,
+  };
 
   const store = {
-    prueba,
+    userInput,
   };
 
   return (
