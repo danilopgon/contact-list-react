@@ -1,22 +1,27 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const AddContact = () => {
+  const [userInput, setUserInput] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+  });
 
-  const AddContact = () => {
-    const [state, setState] = React.useState({
-      fullName: "",
-      email: "",
-      phone: "",
-      address: ""
+  const handleUserInput = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+
+    setUserInput((prev) => {
+      const newState = { ...prev };
+      newState[name] = value;
+      return newState;
     });
 
-    const handleInputChange = (event) => {
-      const { name, value } = event.target;
-      setState((prevState) => ({
-        ...prevState,
-        [name]: value
-      }));
-    };
+    console.log(userInput);
+  };
+
   return (
     <div className="my-3 container">
       <h1 className="">Add a new contact</h1>
@@ -24,17 +29,18 @@ const AddContact = () => {
       <form>
         <div className="mb-3">
           <label
-            htmlFor="exampleInputFullName"
+            htmlFor="fullname"
             className="form-label d-flex justify-content-start"
           >
             Full Name
           </label>
           <input
             type="text"
-            onChange={handleInputChange}
-            value={state.fullName}
+            name="fullName"
+            onChange={handleUserInput}
+            value={userInput.fullName}
             className="form-control"
-            id="exampleInputFullName"
+            id="fullname"
             aria-describedby="fullNameHelp"
             placeholder="Full Name"
           />
@@ -42,17 +48,18 @@ const AddContact = () => {
 
         <div className="mb-3">
           <label
-            htmlFor="exampleInputEmail"
+            htmlFor="email"
             className="form-label d-flex justify-content-start"
           >
             Email
           </label>
           <input
             type="text"
-            onChange={handleInputChange}
-            value={state.email}
+            name="email"
+            onChange={handleUserInput}
+            value={userInput.email}
             className="form-control"
-            id="exampleInputEmail"
+            id="email"
             aria-describedby="emailHelp"
             placeholder="Enter email"
           />
@@ -60,17 +67,18 @@ const AddContact = () => {
 
         <div className="mb-3">
           <label
-            htmlFor="exampleInputPhone"
+            htmlFor="phone"
             className="form-label d-flex justify-content-start"
           >
             Phone
           </label>
           <input
             type="text"
-            onChange={handleInputChange}
-            value={state.phone}
+            name="phone"
+            onChange={handleUserInput}
+            value={userInput.phone}
             className="form-control"
-            id="exampleInputPhone"
+            id="phone"
             aria-describedby="phoneHelp"
             placeholder="Enter phone"
           />
@@ -78,17 +86,18 @@ const AddContact = () => {
 
         <div className="mb-3">
           <label
-            htmlFor="exampleInputAdress"
+            htmlFor="address"
             className="form-label d-flex justify-content-start"
           >
             Adress
           </label>
           <input
             type="text"
-            onChange={handleInputChange}
-            value={state.adress}
+            name="address"
+            onChange={handleUserInput}
+            value={userInput.address}
             className="form-control"
-            id="exampleInputAdress"
+            id="address"
             aria-describedby="adressHelp"
             placeholder="Enter adress"
           />
@@ -106,6 +115,5 @@ const AddContact = () => {
     </div>
   );
 };
-}
 
 export default AddContact;
