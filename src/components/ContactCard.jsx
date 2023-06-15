@@ -8,9 +8,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import CardAvatar from "./CardAvatar";
+import useAppContext from "../context/AppContext";
 
-const ContactCard = ({ contact }) => {
+const ContactCard = ({ contact, id }) => {
   const { full_name, email, phone, address } = contact;
+  const { actions } = useAppContext();
 
   return (
     <div className="card p-2">
@@ -47,6 +49,9 @@ const ContactCard = ({ contact }) => {
             <FontAwesomeIcon
               className="mx-3 icon-button"
               icon={faTrash}
+              onClick={() => {
+                actions.handleDeleteButton(id);
+              }}
               size="xl"
             />
           </div>

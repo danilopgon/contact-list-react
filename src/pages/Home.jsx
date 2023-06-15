@@ -1,13 +1,13 @@
-import useAppContext from "../context/AppContext";
 import { Link } from "react-router-dom";
 
 import ContactCard from "../components/ContactCard";
 import LoadingSpinner from "../components/LoadingSpinner";
+import useContactList from "../hooks/useContactList";
 
 const Home = () => {
-  const { store, actions } = useAppContext();
+  const { contactList, loading } = useContactList();
 
-  if (store.loading) {
+  if (loading) {
     return <LoadingSpinner />;
   }
 
@@ -21,8 +21,10 @@ const Home = () => {
         </Link>
       </header>
       <div className="container">
-        {store.contactList.map((contact) => {
-          return <ContactCard contact={contact} key={contact.id} />;
+        {contactList.map((contact) => {
+          return (
+            <ContactCard contact={contact} id={contact.id} key={contact.id} />
+          );
         })}
       </div>
     </>

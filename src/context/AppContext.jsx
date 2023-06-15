@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import useContactList from "../hooks/useContactList";
 import sendNewContact from "../services/sendNewContact";
+import deleteContact from "../services/deleteContact";
 
 const AppContext = createContext();
 
@@ -13,13 +14,11 @@ export const AppProvider = ({ children }) => {
   });
   const [promptOpen, setPromptOpen] = useState(false);
 
-  const { contactList, loading } = useContactList();
-
   const handleUserInput = (event) => {
     const { name, value } = event.target;
     setUserInput((prevState) => ({
       ...prevState,
-      [name]: value.trim(),
+      [name]: value,
     }));
   };
 
@@ -34,15 +33,18 @@ export const AppProvider = ({ children }) => {
     });
   };
 
+  const handleDeleteButton = (id) => {
+    deleteContact(id);
+  };
+
   const actions = {
     handleUserInput,
     handleSubmit,
+    handleDeleteButton,
   };
 
   const store = {
     userInput,
-    loading,
-    contactList,
     promptOpen,
   };
 
