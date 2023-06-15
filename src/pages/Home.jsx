@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import ContactCard from "../components/ContactCard";
 import LoadingSpinner from "../components/LoadingSpinner";
-import CardAvatar from "../components/CardAvatar";
 
 const Home = () => {
   const { store, actions } = useAppContext();

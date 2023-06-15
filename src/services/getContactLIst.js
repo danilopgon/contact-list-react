@@ -9,8 +9,7 @@ const getContactList = async () => {
       return response.json();
     })
     .then((response) => response)
-
-    .catch((err) => alert(err));
+    .catch((err) => console.log(err));
 };
 
 export default getContactList;

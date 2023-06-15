@@ -1,11 +1,12 @@
 import { createContext, useContext, useState } from "react";
 import useContactList from "../hooks/useContactList";
+import sendNewContact from "../services/sendNewContact";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
   const [userInput, setUserInput] = useState({
-    fullName: "",
+    full_name: "",
     email: "",
     phone: "",
     address: "",
@@ -24,6 +25,13 @@ export const AppProvider = ({ children }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    sendNewContact(userInput);
+    setUserInput({
+      full_name: "",
+      email: "",
+      phone: "",
+      address: "",
+    });
   };
 
   const actions = {

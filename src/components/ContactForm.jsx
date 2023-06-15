@@ -8,20 +8,21 @@ const ContactForm = () => {
     <form onSubmit={actions.handleSubmit}>
       <div className="mb-3">
         <label
-          htmlFor="fullname"
+          htmlFor="full_name"
           className="form-label d-flex justify-content-start"
         >
           Full Name
         </label>
         <input
           type="text"
-          name="fullName"
+          name="full_name"
           onChange={actions.handleUserInput}
-          value={store.userInput.fullName}
+          value={store.userInput.full_name}
           className="form-control"
           id="fullname"
           aria-describedby="fullNameHelp"
           placeholder="Full Name"
+          required
         />
       </div>
 
@@ -41,6 +42,7 @@ const ContactForm = () => {
           id="email"
           aria-describedby="emailHelp"
           placeholder="Enter email"
+          required
         />
       </div>
 
@@ -60,6 +62,7 @@ const ContactForm = () => {
           id="phone"
           aria-describedby="phoneHelp"
           placeholder="Enter phone"
+          required
         />
       </div>
 
@@ -79,6 +82,7 @@ const ContactForm = () => {
           id="address"
           aria-describedby="adressHelp"
           placeholder="Enter adress"
+          required
         />
       </div>
 
