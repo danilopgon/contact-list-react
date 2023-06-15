@@ -2,7 +2,6 @@ import useAppContext from "../context/AppContext";
 import { Link } from "react-router-dom";
 
 import ContactCard from "../components/ContactCard";
-import AddContact from "./AddContact";
 
 const Home = () => {
   const { store, actions } = useAppContext();

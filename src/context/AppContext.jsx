@@ -9,6 +9,8 @@ export const AppProvider = ({ children }) => {
     phone: "",
     address: "",
   });
+  const [contactList, setContactList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleUserInput = (event) => {
     const { name, value } = event.target;
