@@ -9,7 +9,9 @@ import {
 
 import CardAvatar from "./CardAvatar";
 
-const ContactCard = () => {
+const ContactCard = ({ contact }) => {
+  const { full_name, email, phone, address } = contact;
+
   return (
     <div className="card p-2">
       <div className="row g-0 col-12">
@@ -20,18 +22,18 @@ const ContactCard = () => {
         </div>
         <div className="col-md-7">
           <div className="card-body text-md-start">
-            <h3 className="card-title">Name</h3>
+            <h3 className="card-title">{full_name}</h3>
             <h4 className="card-title">
               <FontAwesomeIcon className="me-3" icon={faLocationDot} />
-              Direction
+              {address}
             </h4>
             <h5 className="card-title">
               <FontAwesomeIcon className="me-3" icon={faPhone} />
-              Phone
+              {phone}
             </h5>
             <h5 className="card-title">
               <FontAwesomeIcon className="me-3" icon={faEnvelope} />
-              Email
+              {email}
             </h5>
           </div>
         </div>

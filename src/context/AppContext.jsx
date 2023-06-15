@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import useContactList from "../hooks/useContactList";
 
 const AppContext = createContext();
 
@@ -9,8 +10,9 @@ export const AppProvider = ({ children }) => {
     phone: "",
     address: "",
   });
-  const [contactList, setContactList] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [promptOpen, setPromptOpen] = useState(false);
+
+  const { contactList, loading } = useContactList();
 
   const handleUserInput = (event) => {
     const { name, value } = event.target;
@@ -31,6 +33,9 @@ export const AppProvider = ({ children }) => {
 
   const store = {
     userInput,
+    loading,
+    contactList,
+    promptOpen,
   };
 
   return (
