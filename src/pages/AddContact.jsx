@@ -10,16 +10,11 @@ const AddContact = () => {
   });
 
   const handleUserInput = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
-
-    setUserInput((prev) => {
-      const newState = { ...prev };
-      newState[name] = value;
-      return newState;
-    });
-
-    console.log(userInput);
+    const { name, value } = event.target;
+    setUserInput((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
