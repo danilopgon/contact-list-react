@@ -19,7 +19,7 @@ export const AppProvider = ({ children }) => {
     const { name, value } = event.target;
     setUserInput((prevState) => ({
       ...prevState,
-      [name]: value,
+      [name]: value.trim(),
     }));
   };
 

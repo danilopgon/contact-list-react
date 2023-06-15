@@ -34,7 +34,7 @@ const ContactForm = () => {
           Email
         </label>
         <input
-          type="text"
+          type="email"
           name="email"
           onChange={actions.handleUserInput}
           value={store.userInput.email}
@@ -54,7 +54,7 @@ const ContactForm = () => {
           Phone
         </label>
         <input
-          type="text"
+          type="tel"
           name="phone"
           onChange={actions.handleUserInput}
           value={store.userInput.phone}
@@ -71,7 +71,7 @@ const ContactForm = () => {
           htmlFor="address"
           className="form-label d-flex justify-content-start"
         >
-          Adress
+          Address
         </label>
         <input
           type="text"
