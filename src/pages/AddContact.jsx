@@ -1,6 +1,13 @@
 import { Link } from "react-router-dom";
 
 const AddContact = () => {
+
+  const [nombre, setNombre] = useState('');
+
+  const handleInputChange = (event) => {
+    setNombre(event.target.value);
+  };
+
   return (
     <div className="my-3 container">
       <h1 className="">Add a new contact</h1>
@@ -15,6 +22,7 @@ const AddContact = () => {
           </label>
           <input
             type="text"
+            onChange={handleInputChange}
             className="form-control"
             id="exampleInputFullName"
             aria-describedby="fullNameHelp"
