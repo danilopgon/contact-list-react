@@ -8,15 +8,15 @@ const useContactList = () => {
 
   const { store } = useAppContext();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const list = await getContactList();
-      setContactList(list);
-      setLoading(false);
-    };
+  const fetchData = async () => {
+    const list = await getContactList();
+    setContactList(list);
+    setLoading(false);
+  };
 
+  useEffect(() => {
     fetchData();
-  }, [store.refetch]);
+  }, [store.userInput]);
 
   return { loading, contactList };
 };
