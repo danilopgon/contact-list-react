@@ -12,7 +12,7 @@ import useAppContext from "../context/AppContext";
 
 const ContactCard = ({ contact, id }) => {
   const { full_name, email, phone, address } = contact;
-  const { actions } = useAppContext();
+  const { store, actions } = useAppContext();
 
   return (
     <div className="card p-2">
@@ -50,7 +50,8 @@ const ContactCard = ({ contact, id }) => {
               className="mx-3 icon-button"
               icon={faTrash}
               onClick={() => {
-                actions.handleDeleteButton(id);
+                actions.setIdToDelete(id);
+                actions.setAlertOpen(true);
               }}
               size="xl"
             />

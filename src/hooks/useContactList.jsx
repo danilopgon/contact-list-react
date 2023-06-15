@@ -6,8 +6,6 @@ const useContactList = () => {
   const [loading, setLoading] = useState(true);
   const [contactList, setContactList] = useState([]);
 
-  const { store } = useAppContext();
-
   const fetchData = async () => {
     const list = await getContactList();
     setContactList(list);
@@ -16,9 +14,9 @@ const useContactList = () => {
 
   useEffect(() => {
     fetchData();
-  }, [store.userInput]);
+  }, []);
 
-  return { loading, contactList };
+  return { loading, contactList, fetchData };
 };
 
 export default useContactList;

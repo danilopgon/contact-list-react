@@ -13,6 +13,10 @@ export const AppProvider = ({ children }) => {
     address: "",
   });
   const [promptOpen, setPromptOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(0);
+
+  const { contactList, loading, fetchData } = useContactList();
 
   const handleUserInput = (event) => {
     const { name, value } = event.target;
@@ -33,19 +37,26 @@ export const AppProvider = ({ children }) => {
     });
   };
 
-  const handleDeleteButton = (id) => {
-    deleteContact(id);
+  const handleDeleteButton = async (id) => {
+    await deleteContact(id);
+    await fetchData();
   };
 
   const actions = {
     handleUserInput,
     handleSubmit,
     handleDeleteButton,
+    setAlertOpen,
+    setIdToDelete,
   };
 
   const store = {
     userInput,
     promptOpen,
+    alertOpen,
+    idToDelete,
+    contactList,
+    loading,
   };
 
   return (

@@ -3,16 +3,20 @@ import { Link } from "react-router-dom";
 import ContactCard from "../components/ContactCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import useContactList from "../hooks/useContactList";
+import useAppContext from "../context/AppContext";
+import Alert from "../components/Alert";
 
 const Home = () => {
-  const { contactList, loading } = useContactList();
+  const { store, dialog } = useAppContext();
 
-  if (loading) {
+  if (store.loading) {
     return <LoadingSpinner />;
   }
 
   return (
     <>
+      <Alert open={store.alertOpen ? "open" : ""} id={store.idToDelete} />
+
       <header className="p-3 container d-flex justify-content-center justify-content-md-end">
         <Link to="/add">
           <button type="button" className="btn btn-success btn-lg">
@@ -21,7 +25,7 @@ const Home = () => {
         </Link>
       </header>
       <div className="container">
-        {contactList.map((contact) => {
+        {store.contactList.map((contact) => {
           return (
             <ContactCard contact={contact} id={contact.id} key={contact.id} />
           );

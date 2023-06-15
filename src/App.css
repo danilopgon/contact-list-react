@@ -14,3 +14,16 @@
   transform: scale(1.1);
   color: #155724;
 }
+
+.delete-alert {
+  height: 70vh;
+  width: 80%;
+  animation: fadeIn 1s ease both;
+  background: rgb(255 255 255 / 40%);
+  z-index: 2;
+  backdrop-filter: blur(15px);
+  display: flex;
+  border-radius: 1rem;
+  justify-content: center;
+  align-items: center;
+}
