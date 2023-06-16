@@ -2,21 +2,31 @@ import { Link } from "react-router-dom";
 
 import ContactCard from "../components/ContactCard";
 import LoadingSpinner from "../components/LoadingSpinner";
-import useContactList from "../hooks/useContactList";
 import useAppContext from "../context/AppContext";
 import Alert from "../components/Alert";
+import Prompt from "../components/Prompt";
 
 const Home = () => {
-  const { store, dialog } = useAppContext();
+  const { store } = useAppContext();
 
   if (store.loading) {
     return <LoadingSpinner />;
   }
 
+  if (store.alertOpen) {
+    return (
+      <Alert open={store?.alertOpen ? "open" : ""} id={store.idToModify} />
+    );
+  }
+
+  if (store.promptOpen) {
+    return (
+      <Prompt open={store?.promptOpen ? "open" : ""} id={store.idToModify} />
+    );
+  }
+
   return (
     <>
-      <Alert open={store.alertOpen ? "open" : ""} id={store.idToDelete} />
-
       <header className="p-3 container d-flex justify-content-center justify-content-md-end">
         <Link to="/add">
           <button type="button" className="btn btn-success btn-lg">
@@ -24,6 +34,9 @@ const Home = () => {
           </button>
         </Link>
       </header>
+      <h1 className="my-3">
+        {store?.contactList.length > 0 ? "Contact List" : "No contacts yet"}
+      </h1>
       <div className="container">
         {store.contactList.map((contact) => {
           return (

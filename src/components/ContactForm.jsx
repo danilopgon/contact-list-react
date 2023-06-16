@@ -5,7 +5,9 @@ const ContactForm = () => {
   const { actions, store } = useAppContext();
 
   return (
-    <form onSubmit={actions.handleSubmit}>
+    <form
+      onSubmit={store.promptOpen ? actions.handleEdit : actions.handleSubmit}
+    >
       <div className="mb-3">
         <label
           htmlFor="full_name"
@@ -86,13 +88,24 @@ const ContactForm = () => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary container-fluid">
+      <button type="submit" className="btn btn-primary container-fluid my-3">
         Save
       </button>
       <div className="d-flex justify-content-start">
-        <Link to={"/"} style={{ textDecoration: "underline" }}>
-          or get back to contacts
-        </Link>
+        {store.promptOpen ? (
+          <button
+            className="btn btn-secondary container-fluid"
+            onClick={() => {
+              actions.setPromptOpen(false);
+            }}
+          >
+            Cancel
+          </button>
+        ) : (
+          <Link to={"/"} style={{ textDecoration: "underline" }}>
+            or get back to contacts
+          </Link>
+        )}
       </div>
     </form>
   );

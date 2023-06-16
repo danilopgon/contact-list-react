@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import getContactList from "../services/getContactLIst";
-import useAppContext from "../context/AppContext";
 
 const useContactList = () => {
   const [loading, setLoading] = useState(true);
@@ -14,9 +13,9 @@ const useContactList = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [loading]);
 
-  return { loading, contactList, fetchData };
+  return { loading, setLoading, contactList, fetchData };
 };
 
 export default useContactList;

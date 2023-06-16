@@ -45,12 +45,16 @@ const ContactCard = ({ contact, id }) => {
               className="mx-3 icon-button"
               icon={faPencil}
               size="xl"
+              onClick={() => {
+                actions.setIdToModify(id);
+                actions.setPromptOpen(true);
+              }}
             />
             <FontAwesomeIcon
               className="mx-3 icon-button"
               icon={faTrash}
               onClick={() => {
-                actions.setIdToDelete(id);
+                actions.setIdToModify(id);
                 actions.setAlertOpen(true);
               }}
               size="xl"

@@ -1,15 +1,16 @@
 import useAppContext from "../context/AppContext";
 
 const Alert = ({ open, id }) => {
-  const { store, actions } = useAppContext();
+  const { actions } = useAppContext();
 
   return (
     <>
       {open && (
         <dialog className="delete-alert">
-          <div className="card">
-            <h1>Are u sure?</h1>
+          <div className="card p-5 border-rounded d-flex flex-column justify-content-center gap-2">
+            <h3 className="my-3">Are you sure?</h3>
             <button
+              className="btn btn-danger btn-lg"
               onClick={() => {
                 actions.handleDeleteButton(id);
               }}
@@ -17,11 +18,12 @@ const Alert = ({ open, id }) => {
               Delete
             </button>
             <button
+              className="btn btn-secondary btn-lg"
               onClick={() => {
                 actions.setAlertOpen(false);
               }}
             >
-              Close alert
+              Cancel
             </button>
           </div>
         </dialog>
