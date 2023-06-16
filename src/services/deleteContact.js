@@ -3,7 +3,7 @@ const deleteContact = async (id) => {
     method: "DELETE",
   })
     .then((response) => {
-      if (!response.ok) {
+      if (response) {
         throw Error();
       }
       return response.json();
