@@ -5,9 +5,14 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import useAppContext from "../context/AppContext";
 import Alert from "../components/Alert";
 import Prompt from "../components/Prompt";
+import UserNameInput from "../components/UserNameInput";
 
 const Home = () => {
   const { store } = useAppContext();
+
+  if (store.userName.length === 0){
+    return <UserNameInput />;
+  }
 
   if (store.loading) {
     return <LoadingSpinner />;
