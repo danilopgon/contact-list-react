@@ -1,13 +1,10 @@
-import useAppContext from '../context/AppContext';
-
-const editContact = async (contact, id) => {
-const { full_name, email, address, phone } = contact;
-const { store } = useAppContext();
+const editContact = async (contact, id, username) => {
+  const { full_name, email, address, phone } = contact;
 
   const newInfo = {
     full_name: full_name,
     email: email,
-    agenda_slug: store.userName,
+    agenda_slug: username,
     address: address,
     phone: phone,
   };

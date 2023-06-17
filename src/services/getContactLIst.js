@@ -1,9 +1,7 @@
-import useAppContext from '../context/AppContext';
-
-const getContactList = async () => {
-  const { store } = useAppContext();
-  return fetch(` https://assets.breatheco.de/apis/fake/contact/agenda/${store.userName}`
-)
+const getContactList = async (username) => {
+  return fetch(
+    ` https://assets.breatheco.de/apis/fake/contact/agenda/${username}`
+  )
     .then((response) => {
       if (!response.ok) {
         throw Error();

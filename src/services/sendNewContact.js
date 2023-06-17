@@ -1,13 +1,10 @@
-import useAppContext from '../context/AppContext';
-
-const sendNewContact = async (contact) => {
+const sendNewContact = async (contact, username) => {
   const { full_name, email, address, phone } = contact;
-  const { store } = useAppContext();
 
   const newContact = {
     full_name: full_name,
     email: email,
-    agenda_slug: store.userName,
+    agenda_slug: username,
     address: address,
     phone: phone,
   };

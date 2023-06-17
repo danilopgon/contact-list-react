@@ -10,7 +10,7 @@ import UserNameInput from "../components/UserNameInput";
 const Home = () => {
   const { store } = useAppContext();
 
-  if (store.userName.length === 0){
+  if (!store.userName) {
     return <UserNameInput />;
   }
 

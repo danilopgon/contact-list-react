@@ -4,7 +4,6 @@ import sendNewContact from "../services/sendNewContact";
 import deleteContact from "../services/deleteContact";
 import editContact from "../services/editContact";
 
-
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -17,11 +16,11 @@ export const AppProvider = ({ children }) => {
   const [promptOpen, setPromptOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [idToModify, setIdToModify] = useState(0);
-  const [userName, setUserName] = useState('');
-  const [userNameInput, setUserNameInput] = useState('');
+  const [userName, setUserName] = useState("");
+  const [userNameInput, setUserNameInput] = useState("");
 
-
-  const { contactList, loading, setLoading, fetchData } = useContactList();
+  const { contactList, loading, setLoading, fetchData } =
+    useContactList(userName);
 
   const handleUserInput = (event) => {
     const { name, value } = event.target;
@@ -34,7 +33,7 @@ export const AppProvider = ({ children }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    await sendNewContact(userInput);
+    await sendNewContact(userInput, userName);
     setUserInput({
       full_name: "",
       email: "",
@@ -47,7 +46,7 @@ export const AppProvider = ({ children }) => {
   const handleUserNameSubmit = (e) => {
     e.preventDefault();
     setUserName(userNameInput);
-    setUserNameInput('');
+    setUserNameInput("");
     setLoading(true);
   };
 
@@ -61,7 +60,7 @@ export const AppProvider = ({ children }) => {
   const handleEdit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    await editContact(userInput, idToModify);
+    await editContact(userInput, idToModify, userName);
     setUserInput({
       full_name: "",
       email: "",
