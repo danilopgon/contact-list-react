@@ -44,6 +44,7 @@ export const AppProvider = ({ children }) => {
     setLoading(true);
     await deleteContact(id);
     setAlertOpen(false);
+    fetchData();
   };
 
   const handleEdit = async (event) => {
