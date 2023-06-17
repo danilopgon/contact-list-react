@@ -17,7 +17,7 @@
 
 .delete-alert,
 .prompt {
-  height: 100vh;
+  min-height: 90vh;
   width: 100%;
   animation: fadeIn 1s ease both;
   background: rgb(255 255 255 / 40%);
