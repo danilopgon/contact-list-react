@@ -4,6 +4,7 @@ import sendNewContact from "../services/sendNewContact";
 import deleteContact from "../services/deleteContact";
 import editContact from "../services/editContact";
 
+
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -16,6 +17,9 @@ export const AppProvider = ({ children }) => {
   const [promptOpen, setPromptOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [idToModify, setIdToModify] = useState(0);
+  const [userName, setUserName] = useState('');
+  const [userNameInput, setUserNameInput] = useState('');
+
 
   const { contactList, loading, setLoading, fetchData } = useContactList();
 
@@ -38,6 +42,13 @@ export const AppProvider = ({ children }) => {
       address: "",
     });
     fetchData();
+  };
+
+  const handleUserNameSubmit = (e) => {
+    e.preventDefault();
+    setUserName(userNameInput);
+    setUserNameInput('');
+    setLoading(true);
   };
 
   const handleDeleteButton = async (id) => {
@@ -66,9 +77,12 @@ export const AppProvider = ({ children }) => {
     handleSubmit,
     handleDeleteButton,
     handleEdit,
+    handleUserNameSubmit,
     setAlertOpen,
     setPromptOpen,
     setIdToModify,
+    setUserName,
+    setUserNameInput,
   };
 
   const store = {
@@ -78,6 +92,8 @@ export const AppProvider = ({ children }) => {
     idToModify,
     contactList,
     loading,
+    userName,
+    userNameInput,
   };
 
   return (

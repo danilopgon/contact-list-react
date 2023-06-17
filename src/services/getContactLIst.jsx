@@ -1,7 +1,9 @@
+import useAppContext from '../context/AppContext';
+
 const getContactList = async () => {
-  return fetch(
-    "https://assets.breatheco.de/apis/fake/contact/agenda/danilopgon"
-  )
+  const { store } = useAppContext();
+  return fetch(` https://assets.breatheco.de/apis/fake/contact/agenda/${store.userName}`
+)
     .then((response) => {
       if (!response.ok) {
         throw Error();
