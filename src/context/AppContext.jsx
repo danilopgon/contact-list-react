@@ -3,6 +3,7 @@ import useContactList from "../hooks/useContactList";
 import sendNewContact from "../services/sendNewContact";
 import deleteContact from "../services/deleteContact";
 import editContact from "../services/editContact";
+import { useNavigate } from "react-router-dom";
 
 const AppContext = createContext();
 
@@ -16,11 +17,13 @@ export const AppProvider = ({ children }) => {
 
   const { contactList, loading, setLoading, fetchData } =
     useContactList(userName);
+  const navigate = useNavigate();
 
   const handleSubmit = async (info) => {
     setLoading(true);
     await sendNewContact(info, userName);
     fetchData();
+    navigate("/");
   };
 
   const handleUserNameSubmit = (e) => {
