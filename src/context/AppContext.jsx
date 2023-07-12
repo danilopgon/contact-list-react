@@ -19,18 +19,25 @@ export const AppProvider = ({ children }) => {
     useContactList(userName);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const storedUserName = localStorage.getItem("username");
+    setUserName(storedUserName);
+    setLoading(true);
+  }, []);
+
+  const handleUserNameSubmit = (e) => {
+    e.preventDefault();
+    setUserName(userNameInput);
+    localStorage.setItem("username", userNameInput);
+    setUserNameInput("");
+    setLoading(true);
+  };
+
   const handleSubmit = async (info) => {
     setLoading(true);
     await sendNewContact(info, userName);
     fetchData();
     navigate("/");
-  };
-
-  const handleUserNameSubmit = (e) => {
-    e.preventDefault();
-    setUserName(userNameInput);
-    setUserNameInput("");
-    setLoading(true);
   };
 
   const handleDeleteButton = async (id) => {

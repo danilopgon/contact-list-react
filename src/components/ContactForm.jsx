@@ -12,8 +12,6 @@ const ContactForm = () => {
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   const emailRegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}/g;
 
-  
-
   return (
     <>
       <Formik
@@ -66,7 +64,11 @@ const ContactForm = () => {
             Full name
           </label>
           <Field name="full_name" type="text" className="form-control" />
-          <ErrorMessage name="full_name" />
+          <ErrorMessage
+            name="full_name"
+            component="div"
+            className="text-danger d-flex"
+          />
 
           <label
             htmlFor="email"
@@ -75,7 +77,11 @@ const ContactForm = () => {
             Email{" "}
           </label>
           <Field name="email" type="email" className="form-control" />
-          <ErrorMessage name="email" />
+          <ErrorMessage
+            name="email"
+            component="div"
+            className="text-danger d-flex"
+          />
 
           <label
             htmlFor="address"
@@ -84,7 +90,11 @@ const ContactForm = () => {
             Address
           </label>
           <Field name="address" type="text" className="form-control" />
-          <ErrorMessage name="address" />
+          <ErrorMessage
+            name="address"
+            component="div"
+            className="text-danger d-flex"
+          />
 
           <label
             htmlFor="phone"
@@ -93,7 +103,11 @@ const ContactForm = () => {
             Phone number
           </label>
           <Field name="phone" type="text" className="form-control" />
-          <ErrorMessage name="phone" />
+          <ErrorMessage
+            name="phone"
+            component="div"
+            className="text-danger d-flex"
+          />
 
           <button
             type="submit"

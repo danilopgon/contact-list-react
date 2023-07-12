@@ -12,8 +12,10 @@ const useContactList = (username) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [loading]);
+    if (username) {
+      fetchData();
+    }
+  }, [username, loading]);
 
   return { loading, setLoading, contactList, fetchData };
 };
