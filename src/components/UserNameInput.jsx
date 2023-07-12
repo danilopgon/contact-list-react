@@ -1,7 +1,7 @@
 import useAppContext from "../context/AppContext";
 
 const UserNameInput = () => {
-  const { store, actions } = useAppContext();
+  const { actions } = useAppContext();
 
   return (
     <dialog className="prompt">
