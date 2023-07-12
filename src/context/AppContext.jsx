@@ -33,6 +33,13 @@ export const AppProvider = ({ children }) => {
     setLoading(true);
   };
 
+  const changeUsername = () => {
+    localStorage.removeItem("username");
+    setUserName("");
+    navigate("/");
+    setLoading(true);
+  };
+
   const handleSubmit = async (info) => {
     setLoading(true);
     await sendNewContact(info, userName);
@@ -79,6 +86,7 @@ export const AppProvider = ({ children }) => {
     setUserNameInput,
     setContactToEdit,
     getContactToEdit,
+    changeUsername,
   };
 
   const store = {
