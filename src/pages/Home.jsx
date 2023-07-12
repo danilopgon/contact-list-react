@@ -8,7 +8,7 @@ import Prompt from "../components/Prompt";
 import UserNameInput from "../components/UserNameInput";
 
 const Home = () => {
-  const { store } = useAppContext();
+  const { store, actions } = useAppContext();
 
   if (!store.userName) {
     return <UserNameInput />;
@@ -34,10 +34,16 @@ const Home = () => {
     <>
       <header className="p-3 container d-flex justify-content-center justify-content-md-end">
         <Link to="/add">
-          <button type="button" className="btn btn-success btn-lg">
+          <button type="button" className="btn btn-success ">
             Add new contact
           </button>
         </Link>
+        <button
+          className="btn btn-secondary ms-2"
+          onClick={actions.changeUsername}
+        >
+          Change username
+        </button>
       </header>
       <h1 className="my-3">
         {store?.contactList.length > 0 ? "Contact List" : "No contacts yet"}

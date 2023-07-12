@@ -1,53 +1,50 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import useContactList from "../hooks/useContactList";
 import sendNewContact from "../services/sendNewContact";
 import deleteContact from "../services/deleteContact";
 import editContact from "../services/editContact";
+import { useNavigate } from "react-router-dom";
 
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [userInput, setUserInput] = useState({
-    full_name: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
   const [promptOpen, setPromptOpen] = useState(false);
   const [alertOpen, setAlertOpen] = useState(false);
   const [idToModify, setIdToModify] = useState(0);
   const [userName, setUserName] = useState("");
   const [userNameInput, setUserNameInput] = useState("");
+  const [contactToEdit, setContactToEdit] = useState();
 
   const { contactList, loading, setLoading, fetchData } =
     useContactList(userName);
+  const navigate = useNavigate();
 
-  const handleUserInput = (event) => {
-    const { name, value } = event.target;
-    setUserInput((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    const storedUserName = localStorage.getItem("username");
+    setUserName(storedUserName);
     setLoading(true);
-    await sendNewContact(userInput, userName);
-    setUserInput({
-      full_name: "",
-      email: "",
-      phone: "",
-      address: "",
-    });
-    fetchData();
-  };
+  }, []);
 
   const handleUserNameSubmit = (e) => {
     e.preventDefault();
     setUserName(userNameInput);
+    localStorage.setItem("username", userNameInput);
     setUserNameInput("");
     setLoading(true);
+  };
+
+  const changeUsername = () => {
+    localStorage.removeItem("username");
+    setUserName("");
+    navigate("/");
+    setLoading(true);
+  };
+
+  const handleSubmit = async (info) => {
+    setLoading(true);
+    await sendNewContact(info, userName);
+    fetchData();
+    navigate("/");
   };
 
   const handleDeleteButton = async (id) => {
@@ -57,22 +54,27 @@ export const AppProvider = ({ children }) => {
     fetchData();
   };
 
-  const handleEdit = async (event) => {
-    event.preventDefault();
+  const handleEdit = async (info) => {
     setLoading(true);
-    await editContact(userInput, idToModify, userName);
-    setUserInput({
-      full_name: "",
-      email: "",
-      phone: "",
-      address: "",
-    });
+    await editContact(info, idToModify, userName);
     fetchData();
     setPromptOpen(false);
   };
 
+  const getContactToEdit = async (contactID) => {
+    setLoading(true);
+    const contactInfo = contactList.find((contact) => {
+      return contact.id === contactID;
+    });
+
+    setContactToEdit(contactInfo);
+  };
+
+  useEffect(() => {
+    getContactToEdit(idToModify);
+  }, [idToModify]);
+
   const actions = {
-    handleUserInput,
     handleSubmit,
     handleDeleteButton,
     handleEdit,
@@ -82,10 +84,12 @@ export const AppProvider = ({ children }) => {
     setIdToModify,
     setUserName,
     setUserNameInput,
+    setContactToEdit,
+    getContactToEdit,
+    changeUsername,
   };
 
   const store = {
-    userInput,
     promptOpen,
     alertOpen,
     idToModify,
@@ -93,6 +97,7 @@ export const AppProvider = ({ children }) => {
     loading,
     userName,
     userNameInput,
+    contactToEdit,
   };
 
   return (
